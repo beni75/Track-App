@@ -1,11 +1,10 @@
-import { UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
-import Navbar from './components/Navbar';
+import BudgetItem from './components/BudgetItem';
+import budgets from './lib/homeData';
 
 export default function Home() {
   return (
     <div>
-      <Navbar />
       <div className="flex justify-center items-center flex-col py-10 w-full">
         <div>
           <div className="flex flex-col gap-6 p-4 ">
@@ -32,6 +31,13 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="grid md:grid-cols-3 gap-4 max-w-[1240px] mx-auto">
+        {budgets.map((budget) => (
+          <Link key={budget.id} href={''}>
+            <BudgetItem budget={budget} enableHover={1} />
+          </Link>
+        ))}
       </div>
     </div>
   );
